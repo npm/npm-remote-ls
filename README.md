@@ -4,13 +4,13 @@
 
 Examine a package's dependency graph before you install it.
 
-# Installation
+## Installation
 
 ```bash
 npm install npm-remote-ls -g
 ```
 
-# Usage
+## Usage
 
 ```
 npm-remote-ls sha@1.2.4
@@ -24,9 +24,9 @@ npm-remote-ls sha@1.2.4
    └─ graceful-fs@3.0.2
 ```
 
-# API
+## API
 
-** Get dependency tree for latest version:**
+**Return dependency graph for `latest` version:**
 
 ```javascript
 var ls = require('npm-remote-ls').ls;
@@ -36,7 +36,7 @@ ls('grunt', 'latest', function(obj) {
 });
 ```
 
-** Get dependency tree for specific version:**
+**Return dependency graph for specific version:**
 
 ```javascript
 var ls = require('npm-remote-ls').ls;
@@ -46,7 +46,7 @@ ls('grunt', '0.1.0', function(obj) {
 });
 ```
 
-**Flatten the list of dependencies:**
+**Return a flattened list of dependencies:**
 
 ```javascript
 var ls = require('npm-remote-ls').ls;
