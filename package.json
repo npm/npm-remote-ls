@@ -1,0 +1,41 @@
+{
+  "name": "npm-remote-ls",
+  "version": "0.0.1",
+  "description": "Examine a package's dependency graph before you install it",
+  "main": "./lib/index.js",
+  "bin": {
+    "npm-remote-ls": "./bin/npm-remote-ls.js"
+  },
+  "scripts": {
+    "test": "lab -c --timeout=2000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com:npm/npm-remote-ls.git"
+  },
+  "keywords": [
+    "npm",
+    "ls",
+    "remote",
+    "dependency"
+  ],
+  "author": "Ben Coe <ben@npmjs.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/npm/npm-remote-ls/issues"
+  },
+  "homepage": "https://github.com/npm/npm-remote-ls",
+  "devDependencies": {
+    "lab": "^3.2.1",
+    "nock": "^0.41.0"
+  },
+  "dependencies": {
+    "async": "^0.9.0",
+    "char-spinner": "^1.0.1",
+    "lodash": "^2.4.1",
+    "request": "^2.37.0",
+    "semver": "^2.3.1",
+    "treeify": "^1.0.1",
+    "yargs": "^1.2.6"
+  }
+}
