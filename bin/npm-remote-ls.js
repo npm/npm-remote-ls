@@ -32,22 +32,19 @@ var yargs = require('yargs')
   treeify = require('treeify'),
   spinner = require("char-spinner");
 
-require('../lib/config')({
+require('../lib').config({
   verbose: yargs.argv.verbose,
   development: yargs.argv.development
 });
 
-var name = yargs.argv.name || yargs.argv._[0],
+var name = yargs.argv.name || yargs.argv._[0] || '',
   version = name.split('@')[1] || yargs.argv.version;
-
-// remove version string from name.
-name = name.split('@')[0];
 
 if (yargs.argv.help || !name) {
   console.log(yargs.help());
 } else {
   spinner();
-  ls(name, version, yargs.argv.flatten, function(obj) {
+  ls(name.split('@')[0], version, yargs.argv.flatten, function(obj) {
     if (Array.isArray(obj)) console.log(obj);
     else console.log(treeify.asTree(obj));
   });
