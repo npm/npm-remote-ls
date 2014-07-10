@@ -22,8 +22,8 @@ var yargs = require('yargs')
     default: true,
     boolean: true
   })
-  .options('d', {
-    alias: 'development',
+  .options('o', {
+    alias: 'optional',
     description: 'show optional dependencies',
     default: true,
     boolean: true
