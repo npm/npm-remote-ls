@@ -19,7 +19,13 @@ var yargs = require('yargs')
   .options('d', {
     alias: 'development',
     description: 'show development dependencies',
-    default: false,
+    default: true,
+    boolean: true
+  })
+  .options('d', {
+    alias: 'development',
+    description: 'show optional dependencies',
+    default: true,
     boolean: true
   })
   .options('f', {
@@ -34,7 +40,8 @@ var yargs = require('yargs')
 
 require('../lib').config({
   verbose: yargs.argv.verbose,
-  development: yargs.argv.development
+  development: yargs.argv.development,
+  optional: yargs.argv.optional
 });
 
 var name = yargs.argv.name || yargs.argv._[0] || '',
