@@ -33,6 +33,7 @@
     "async": "^0.9.0",
     "char-spinner": "^1.0.1",
     "lodash": "^2.4.1",
+    "registry-url": "^2.0.0",
     "request": "^2.37.0",
     "semver": "^2.3.1",
     "treeify": "^1.0.1",
