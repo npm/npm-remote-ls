@@ -1,12 +1,13 @@
 var Lab = require('lab'),
+  lab = exports.lab = Lab.script(),
   nock = require('nock'),
   fs = require('fs'),
   RemoteLS = require('../lib/remote-ls');
 
-Lab.experiment('RemoteLS', function() {
+lab.experiment('RemoteLS', function() {
 
-  Lab.experiment('guessVersion', function() {
-    Lab.it('should handle an exact version being provided', function(done) {
+  lab.experiment('guessVersion', function() {
+    lab.it('should handle an exact version being provided', function(done) {
       var versionString = '1.0.0',
         packageJson = JSON.parse(
           fs.readFileSync('./test/fixtures/nopt.json').toString()
@@ -20,7 +21,7 @@ Lab.experiment('RemoteLS', function() {
       done();
     });
 
-    Lab.it('should handle a complex version being provided', function(done) {
+    lab.it('should handle a complex version being provided', function(done) {
       var versionString = '*',
         packageJson = JSON.parse(
           fs.readFileSync('./test/fixtures/nopt.json').toString()
@@ -34,7 +35,7 @@ Lab.experiment('RemoteLS', function() {
       done();
     });
 
-    Lab.it('should raise an exception if version cannot be found', function(done) {
+    lab.it('should raise an exception if version cannot be found', function(done) {
       var versionString = '9.0.0',
         packageJson = JSON.parse(
           fs.readFileSync('./test/fixtures/nopt.json').toString()
@@ -48,7 +49,7 @@ Lab.experiment('RemoteLS', function() {
       done();
     });
 
-    Lab.it('should raise an exception if version cannot be found', function(done) {
+    lab.it('should raise an exception if version cannot be found', function(done) {
       var versionString = '9.0.0',
         packageJson = JSON.parse(
           fs.readFileSync('./test/fixtures/nopt.json').toString()
@@ -62,7 +63,7 @@ Lab.experiment('RemoteLS', function() {
       done();
     });
 
-    Lab.it('should handle "latest" being provided as version', function(done) {
+    lab.it('should handle "latest" being provided as version', function(done) {
       var versionString = 'latest',
         packageJson = JSON.parse(
           fs.readFileSync('./test/fixtures/nopt.json').toString()
@@ -77,8 +78,8 @@ Lab.experiment('RemoteLS', function() {
     });
   });
 
-  Lab.experiment('_walkDependencies', function() {
-    Lab.it('should push appropriate dependencies to queue', function(done) {
+  lab.experiment('_walkDependencies', function() {
+    lab.it('should push appropriate dependencies to queue', function(done) {
       var packageJson = JSON.parse(
           fs.readFileSync('./test/fixtures/nopt.json').toString()
         ),
@@ -100,7 +101,7 @@ Lab.experiment('RemoteLS', function() {
       }, packageJson, function() {});
     });
 
-    Lab.it('should push devDependencies to queue', function(done) {
+    lab.it('should push devDependencies to queue', function(done) {
       var packageJson = JSON.parse(
           fs.readFileSync('./test/fixtures/nopt.json').toString()
         ),
@@ -122,7 +123,7 @@ Lab.experiment('RemoteLS', function() {
       }, packageJson, function() {});
     });
 
-    Lab.it('should not raise an exception if package has no dependencies', function(done) {
+    lab.it('should not raise an exception if package has no dependencies', function(done) {
       var packageJson = JSON.parse(
           fs.readFileSync('./test/fixtures/abbrev.json').toString()
         ),
@@ -137,7 +138,7 @@ Lab.experiment('RemoteLS', function() {
       done();
     });
 
-    Lab.it("should not walk dependency if dependency has already been observed", function(done) {
+    lab.it("should not walk dependency if dependency has already been observed", function(done) {
       var packageJson = JSON.parse(
           fs.readFileSync('./test/fixtures/nopt.json').toString()
         ),
@@ -165,8 +166,8 @@ Lab.experiment('RemoteLS', function() {
     });
   });
 
-  Lab.experiment('ls', function() {
-    Lab.it('handles a 404 and prints an appropriate message', function(done) {
+  lab.experiment('ls', function() {
+    lab.it('handles a 404 and prints an appropriate message', function(done) {
       var missingPackage = nock('https://skimdb.npmjs.com')
         .get('/registry/request')
         .reply(404),
