@@ -172,6 +172,7 @@ lab.experiment('RemoteLS', function() {
         .get('/registry/request')
         .reply(404),
         ls = new RemoteLS({
+          registry: 'https://skimdb.npmjs.com/registry/',
           logger: {
             log: function(msg) {
               Lab.expect(msg).to.match(/status = 404/);
