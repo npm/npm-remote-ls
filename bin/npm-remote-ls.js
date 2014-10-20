@@ -28,6 +28,11 @@ var yargs = require('yargs')
     default: true,
     boolean: true
   })
+  .options('r', {
+    alias: 'registry',
+    description: 'set an alternative registry url',
+    default: require('registry-url')
+  })
   .options('f', {
     alias: 'flatten',
     description: 'return flat representation of dependencies',
@@ -41,7 +46,8 @@ var yargs = require('yargs')
 require('../lib').config({
   verbose: yargs.argv.verbose,
   development: yargs.argv.development,
-  optional: yargs.argv.optional
+  optional: yargs.argv.optional,
+  registry: yargs.argv.registry
 });
 
 var name = yargs.argv.name || yargs.argv._[0] || '',
