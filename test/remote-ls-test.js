@@ -1,5 +1,5 @@
 var Lab = require('lab'),
-  lab = exports.lab = Lab.script();
+  lab = exports.lab = Lab.script(),
   nock = require('nock'),
   fs = require('fs'),
   RemoteLS = require('../lib/remote-ls');
