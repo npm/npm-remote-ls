@@ -55,3 +55,33 @@ ls('grunt', '0.1.0', true, function(obj) {
   console.log(obj);
 });
 ```
+
+**Return dependency graph without development dependencies:**
+
+```javascript
+var ls2 = require('npm-remote-ls').ls2;
+
+ls2('grunt', 'latest', function(obj) {
+  console.log(obj);
+});
+```
+
+**Return dependency graph without optional dependencies:**
+
+```javascript
+var ls3 = require('npm-remote-ls').ls3;
+
+ls3('grunt', 'latest', function(obj) {
+  console.log(obj);
+});
+```
+
+**Return dependency graph containing only production dependencies:**
+
+```javascript
+var ls4 = require('npm-remote-ls').ls4;
+
+ls4('grunt', 'latest', function(obj) {
+  console.log(obj);
+});
+```
