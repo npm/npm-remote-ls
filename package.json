@@ -7,7 +7,7 @@
     "npm-remote-ls": "./bin/npm-remote-ls.js"
   },
   "scripts": {
-    "test": "lab -c --timeout 2000"
+    "test": "standard && lab -c --timeout 2000"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,8 @@
   "homepage": "https://github.com/npm/npm-remote-ls",
   "devDependencies": {
     "lab": "^4.6.2",
-    "nock": "^0.48.1"
+    "nock": "^0.48.1",
+    "standard": "^5.4.1"
   },
   "dependencies": {
     "async": "^0.9.0",
