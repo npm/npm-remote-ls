@@ -7,7 +7,7 @@
     "npm-remote-ls": "./bin/npm-remote-ls.js"
   },
   "scripts": {
-    "test": "standard && lab -c --timeout 2000"
+    "test": "standard && tap --coverage test"
   },
   "repository": {
     "type": "git",
@@ -26,18 +26,18 @@
   },
   "homepage": "https://github.com/npm/npm-remote-ls",
   "devDependencies": {
-    "lab": "^4.6.2",
-    "nock": "^0.48.1",
-    "standard": "^5.4.1"
+    "nock": "^3.3.2",
+    "standard": "^5.4.1",
+    "tap": "^2.3.1"
   },
   "dependencies": {
-    "async": "^0.9.0",
+    "async": "^1.5.0",
     "char-spinner": "^1.0.1",
-    "lodash": "^2.4.1",
-    "registry-url": "^2.0.0",
+    "lodash": "^3.10.1",
+    "registry-url": "^3.0.3",
     "request": "^2.37.0",
-    "semver": "^4.1.0",
+    "semver": "^5.1.0",
     "treeify": "^1.0.1",
-    "yargs": "^1.2.6"
+    "yargs": "^3.30.0"
   }
 }
