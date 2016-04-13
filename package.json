@@ -1,6 +1,6 @@
 {
   "name": "npm-remote-ls",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "Examine a package's dependency graph before you install it",
   "main": "./lib/index.js",
   "bin": {
