@@ -1,5 +1,6 @@
 var Lab = require('lab'),
   lab = exports.lab = Lab.script(),
+  Code = require('code'),
   nock = require('nock'),
   fs = require('fs'),
   RemoteLS = require('../lib/remote-ls');
@@ -14,9 +15,9 @@ lab.experiment('RemoteLS', function() {
         ),
         ls = new RemoteLS();
 
-      Lab.expect(
+      Code.expect(
         ls._guessVersion(versionString, packageJson)
-      ).to.eql('1.0.0');
+      ).to.equal('1.0.0');
 
       done();
     });
@@ -28,9 +29,9 @@ lab.experiment('RemoteLS', function() {
         ),
         ls = new RemoteLS();
 
-      Lab.expect(
+      Code.expect(
         ls._guessVersion(versionString, packageJson)
-      ).to.eql('3.0.1');
+      ).to.equal('3.0.1');
 
       done();
     });
@@ -42,7 +43,7 @@ lab.experiment('RemoteLS', function() {
         ),
         ls = new RemoteLS();
 
-      Lab.expect(function() {
+      Code.expect(function() {
         ls._guessVersion(versionString, packageJson)
       }).to.throw(/could not find a satisfactory version/);
 
@@ -56,7 +57,7 @@ lab.experiment('RemoteLS', function() {
         ),
         ls = new RemoteLS();
 
-      Lab.expect(function() {
+      Code.expect(function() {
         ls._guessVersion(versionString, packageJson)
       }).to.throw(/could not find a satisfactory version/);
 
@@ -70,9 +71,9 @@ lab.experiment('RemoteLS', function() {
         ),
         ls = new RemoteLS();
 
-      Lab.expect(
+      Code.expect(
         ls._guessVersion(versionString, packageJson)
-      ).to.eql('3.0.1');
+      ).to.equal('3.0.1');
 
       done();
     });
@@ -87,8 +88,8 @@ lab.experiment('RemoteLS', function() {
           queue: {
             pause: function() {},
             push: function(obj) {
-              Lab.expect(obj.name).to.eql('abbrev');
-              Lab.expect(obj.version).to.eql('1');
+              Code.expect(obj.name).to.equal('abbrev');
+              Code.expect(obj.version).to.equal('1');
               done();
             }
           }
@@ -109,8 +110,8 @@ lab.experiment('RemoteLS', function() {
           queue: {
             pause: function() {},
             push: function(obj) {
-              Lab.expect(obj.name).to.eql('tap');
-              Lab.expect(obj.version).to.eql('1.0.0');
+              Code.expect(obj.name).to.equal('tap');
+              Code.expect(obj.version).to.equal('1.0.0');
               done();
             }
           }
@@ -149,8 +150,8 @@ lab.experiment('RemoteLS', function() {
           queue: {
             pause: function() {},
             push: function(obj) {
-              Lab.expect(obj.name).to.eql('tap');
-              Lab.expect(obj.version).to.eql('1.0.0');
+              Code.expect(obj.name).to.equal('tap');
+              Code.expect(obj.version).to.equal('1.0.0');
               done();
             }
           }
@@ -175,7 +176,7 @@ lab.experiment('RemoteLS', function() {
           registry: 'https://skimdb.npmjs.com/registry/',
           logger: {
             log: function(msg) {
-              Lab.expect(msg).to.match(/status = 404/);
+              Code.expect(msg).to.match(/status = 404/);
               done();
             }
           }
