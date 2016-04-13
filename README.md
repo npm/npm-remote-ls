@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/npm/npm-remote-ls.png)](https://travis-ci.org/npm/npm-remote-ls)
 [![Coverage Status](https://coveralls.io/repos/npm/npm-remote-ls/badge.svg?branch=)](https://coveralls.io/r/npm/npm-remote-ls?branch=master)
+[![NPM version](https://img.shields.io/npm/v/npm-remote-ls.svg)](https://www.npmjs.com/package/npm-remote-ls)
+[![Standard Version](https://img.shields.io/badge/release-standard%20version-brightgreen.svg)](https://github.com/conventional-changelog/standard-version)
 
 Examine a package's dependency graph before you install it.
 
