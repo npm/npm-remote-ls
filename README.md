@@ -1,6 +1,7 @@
 # npm-remote-ls
 
 [![Build Status](https://travis-ci.org/npm/npm-remote-ls.png)](https://travis-ci.org/npm/npm-remote-ls)
+[![Coverage Status](https://coveralls.io/repos/npm/npm-remote-ls/badge.svg?branch=)](https://coveralls.io/r/npm/npm-remote-ls?branch=master)
 
 Examine a package's dependency graph before you install it.
 

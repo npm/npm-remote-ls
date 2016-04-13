@@ -26,18 +26,18 @@
   },
   "homepage": "https://github.com/npm/npm-remote-ls",
   "devDependencies": {
-    "nock": "^3.3.2",
-    "standard": "^5.4.1",
-    "tap": "^2.3.1"
+    "nock": "^8.0.0",
+    "standard": "^6.0.8",
+    "tap": "^5.7.1"
   },
   "dependencies": {
-    "async": "^1.5.0",
+    "async": "^2.0.0-rc.3",
     "char-spinner": "^1.0.1",
-    "lodash": "^3.10.1",
+    "lodash": "^4.10.0",
     "registry-url": "^3.0.3",
     "request": "^2.37.0",
     "semver": "^5.1.0",
     "treeify": "^1.0.1",
-    "yargs": "^3.30.0"
+    "yargs": "^4.6.0"
   }
 }
