@@ -13,6 +13,8 @@ npm install npm-remote-ls -g
 
 ## Usage
 
+### Listing Package Dependencies
+
 ```
 npm-remote-ls sha@1.2.4
 
@@ -23,6 +25,15 @@ npm-remote-ls sha@1.2.4
    │  ├─ inherits@2.0.1
    │  └─ core-util-is@1.0.1
    └─ graceful-fs@3.0.2
+```
+
+### Help!
+
+There are various command line flags you can toggle for `npm-remote-ls`, for
+details run:
+
+```bash
+npm-remote-ls --help
 ```
 
 ## API
@@ -56,3 +67,23 @@ ls('grunt', '0.1.0', true, function(obj) {
   console.log(obj);
 });
 ```
+
+**Configure to only return production dependencies:**
+
+```javascript
+var ls = require('npm-remote-ls').ls
+var config = require('npm-remote-ls').config
+
+config({
+  development: false,
+  optional: false
+})
+
+ls('yargs', 'latest', true, function (obj) {
+  console.log(obj)
+})
+```
+
+## License
+
+ISC

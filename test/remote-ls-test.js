@@ -3,6 +3,8 @@ var nock = require('nock')
 var fs = require('fs')
 var RemoteLS = require('../lib/remote-ls')
 
+require('chai').should()
+
 test('RemoteLS', function (t) {
   t.test('guessVersion', function (t) {
     t.test('should handle an exact version being provided', function (t) {
@@ -189,6 +191,55 @@ test('RemoteLS', function (t) {
       })
 
       ls.ls('request', '*', function () {})
+    })
+
+    t.test('defaults to appropriate registry URL', function (t) {
+      nock('https://registry.npmjs.org')
+          .get('/request')
+          .reply(404)
+      var ls = new RemoteLS({
+        logger: {
+          log: function (msg) {
+            t.match(msg, /status = 404/)
+            t.end()
+          }
+        }
+      })
+
+      ls.ls('request', '*', function () {})
+    })
+
+    t.test('happy path works as expected', function (t) {
+      var request = nock('https://registry.npmjs.org')
+          .get('/request')
+          .reply(200, {
+            name: 'request',
+            versions: {
+              '0.0.1': {
+                dependencies: {
+                  lodash: '0.0.2'
+                }
+              }
+            }
+          })
+      var lodash = nock('https://registry.npmjs.org')
+          .get('/lodash')
+          .reply(200, {
+            name: 'lodash',
+            versions: {
+              '0.0.2': {
+                dependencies: {}
+              }
+            }
+          })
+      var ls = new RemoteLS()
+
+      ls.ls('request', '*', function (res) {
+        res.should.deep.equal({ 'request@0.0.1': { 'lodash@0.0.2': {} } })
+        request.done()
+        lodash.done()
+        t.end()
+      })
     })
 
     t.end()
