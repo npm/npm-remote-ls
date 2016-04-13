@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var yargs = require('yargs')
+    .usage('$0 <pkg-name> [options]')
     .options('n', {
       alias: 'name',
       description: 'package name'
@@ -39,25 +40,26 @@ var yargs = require('yargs')
       default: false,
       boolean: true
     })
+var argv = yargs.argv
 var ls = require('../lib').ls
 var treeify = require('treeify')
 var spinner = require('char-spinner')
 
 require('../lib').config({
-  verbose: yargs.argv.verbose,
-  development: yargs.argv.development,
-  optional: yargs.argv.optional,
-  registry: yargs.argv.registry
+  verbose: argv.verbose,
+  development: argv.development,
+  optional: argv.optional,
+  registry: argv.registry
 })
 
-var name = yargs.argv.name || yargs.argv._[0] || ''
-var version = name.split('@')[1] || yargs.argv.version
+var name = argv.name || argv._[0] || ''
+var version = name.split('@')[1] || argv.version
 
-if (yargs.argv.help || !name) {
-  console.log(yargs.help())
+if (argv.help || !name) {
+  yargs.showHelp()
 } else {
   spinner()
-  ls(name.split('@')[0], version, yargs.argv.flatten, function (obj) {
+  ls(name.split('@')[0], version, argv.flatten, function (obj) {
     if (Array.isArray(obj)) console.log(obj)
     else console.log(treeify.asTree(obj))
   })
