@@ -7,7 +7,8 @@
     "npm-remote-ls": "./bin/npm-remote-ls.js"
   },
   "scripts": {
-    "test": "standard && tap --coverage test"
+    "test": "standard && tap --coverage test",
+    "version": "standard-version"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
     "chai": "^3.5.0",
     "nock": "^8.0.0",
     "standard": "^6.0.8",
+    "standard-version": "^2.1.2",
     "tap": "^5.7.1"
   },
   "dependencies": {
