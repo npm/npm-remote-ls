@@ -242,6 +242,47 @@ test('RemoteLS', function (t) {
       })
     })
 
+    t.test('supports scoped packages', function (t) {
+      var storybook = nock('https://registry.npmjs.org')
+          .get('/@kadira%2fstorybook')
+          .reply(200, {
+            name: '@kadira/storybook',
+            versions: {
+              '1.30.0': {
+                dependencies: { '@kadira/storybook-core': '1.27.0' }
+              }
+            }
+          })
+      var storybook404 = nock('https://registry.npmjs.org')
+          .get('/@kadira/storybook')
+          .reply(404, {
+            error: 'Not found'
+          })
+      var core = nock('https://registry.npmjs.org')
+          .get('/@kadira%2fstorybook-core')
+          .reply(200, {
+            name: '@kadira/storybook-core',
+            versions: {
+              '1.27.0': { dependencies: {} }
+            }
+          })
+      var core404 = nock('https://registry.npmjs.org')
+          .get('/@kadira/storybook-core')
+          .reply(404, {
+            error: 'Not found'
+          })
+      var ls = new RemoteLS()
+
+      ls.ls('@kadira/storybook', '*', function (res) {
+        res.should.deep.equal({ '@kadira/storybook@1.30.0': { '@kadira/storybook-core@1.27.0': {} } })
+        storybook.done()
+        core.done()
+        t.notOk(storybook404.isDone())
+        t.notOk(core404.isDone())
+        t.end()
+      })
+    })
+
     t.end()
   })
 

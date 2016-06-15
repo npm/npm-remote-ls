@@ -44,6 +44,7 @@ var argv = yargs.argv
 var ls = require('../lib').ls
 var treeify = require('treeify')
 var spinner = require('char-spinner')
+var npa = require('npm-package-arg')
 
 require('../lib').config({
   verbose: argv.verbose,
@@ -53,13 +54,13 @@ require('../lib').config({
 })
 
 var name = argv.name || argv._[0] || ''
-var version = name.split('@')[1] || argv.version
 
 if (argv.help || !name) {
   yargs.showHelp()
 } else {
   spinner()
-  ls(name.split('@')[0], version, argv.flatten, function (obj) {
+  var parsed = npa(name)
+  ls(parsed.name, parsed.rawSpec || argv.version, argv.flatten, function (obj) {
     if (Array.isArray(obj)) console.log(obj)
     else console.log(treeify.asTree(obj))
   })
