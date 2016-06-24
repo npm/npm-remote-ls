@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.3.2"></a>
+## [1.3.2](https://github.com/npm/npm-remote-ls/compare/v1.3.1...v1.3.2) (2016-06-24)
+
+
+### Bug Fixes
+
+* match * with dist-tags.latest for prerelease-only versions ([#26](https://github.com/npm/npm-remote-ls/issues/26)) ([9478a97](https://github.com/npm/npm-remote-ls/commit/9478a97))
+
+
+
 <a name="1.3.1"></a>
 ## [1.3.1](https://github.com/npm/npm-remote-ls/compare/v1.3.0...v1.3.1) (2016-06-15)
 
