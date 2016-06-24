@@ -81,6 +81,20 @@ test('RemoteLS', function (t) {
       t.end()
     })
 
+    t.test('should return dist-tags.latest when * wanted and package has only prerelease versions', function (t) {
+      var versionString = '*'
+      var packageJson = JSON.parse(
+        fs.readFileSync('./test/fixtures/angular-core.json').toString()
+      )
+      var ls = new RemoteLS()
+
+      t.equal(
+        ls._guessVersion(versionString, packageJson),
+        '2.0.0-rc.3'
+      )
+      t.end()
+    })
+
     t.end()
   })
 
