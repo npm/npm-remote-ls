@@ -29,6 +29,12 @@ var yargs = require('yargs')
       default: true,
       boolean: true
     })
+    .options('p', {
+      alias: 'peer',
+      description: 'show peer dependencies',
+      default: false,
+      boolean: true
+    })
     .options('r', {
       alias: 'registry',
       description: 'set an alternative registry url',
@@ -50,6 +56,7 @@ require('../lib').config({
   verbose: argv.verbose,
   development: argv.development,
   optional: argv.optional,
+  peer: argv.peer,
   registry: argv.registry
 })
 

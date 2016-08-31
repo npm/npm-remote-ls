@@ -186,6 +186,29 @@ test('RemoteLS', function (t) {
       t.end()
     })
 
+    t.test('should push peerDependencies to queue', function (t) {
+      var packageJson = JSON.parse(
+        fs.readFileSync('./test/fixtures/angular-core.json').toString()
+      )
+      var ls = new RemoteLS({
+        peer: true,
+        queue: {
+          pause: function () {},
+          push: function (obj) {
+            t.equal(obj.name, 'rxjs')
+            t.equal(obj.version, '5.0.0-beta.6')
+            t.end()
+          }
+        }
+      })
+
+      ls._walkDependencies({
+        name: 'angular',
+        version: '2.0.0-rc.3',
+        parent: ls.tree
+      }, packageJson, function () {})
+    })
+
     t.end()
   })
 
