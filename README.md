@@ -86,6 +86,22 @@ ls('yargs', 'latest', true, function (obj) {
 })
 ```
 
+**Configure to return peer dependencies:**
+
+```javascript
+var ls = require('npm-remote-ls').ls
+var config = require('npm-remote-ls').config
+
+config({
+  development: true,
+  peer: true
+})
+
+ls('grunt-contrib-coffee', 'latest', true, function (obj) {
+  console.log(obj)
+})
+```
+
 ## License
 
 ISC
