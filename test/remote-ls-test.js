@@ -46,7 +46,7 @@ test('RemoteLS', function (t) {
         function () {
           ls._guessVersion(versionString, packageJson)
         },
-        /could not find a satisfactory version/
+        /Could not find a satisfactory version/
       )
       t.end()
     })
@@ -62,7 +62,7 @@ test('RemoteLS', function (t) {
         function () {
           ls._guessVersion(versionString, packageJson)
         },
-        /could not find a satisfactory version/
+        /Could not find a satisfactory version/
       )
       t.end()
     })
