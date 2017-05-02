@@ -320,6 +320,62 @@ test('RemoteLS', function (t) {
       })
     })
 
+    t.test('support mix custom scoped packages', function (t) {
+      t.plan(1)
+
+      var rc
+      try {
+        rc = require('registry-url/node_modules/rc/lib/utils')
+      } catch (e) { }
+      try {
+        rc = require('rc/lib/utils')
+      } catch (e) { }
+      var oldRcFile = rc.file
+      t.beforeEach(function (done) {
+        rc.file = function () {
+          return '@example:registry = https://example.org'
+        }
+        done()
+      })
+      t.afterEach(function (done) {
+        rc.file = oldRcFile
+        done()
+      })
+
+      t.test('ok', function (t) {
+        var request = nock('https://registry.npmjs.org')
+            .get('/request')
+            .reply(200, {
+              name: 'request',
+              versions: {
+                '0.0.1': {
+                  dependencies: {
+                    '@example/lodash': '0.0.2'
+                  }
+                }
+              }
+            })
+        var lodash = nock('https://example.org')
+            .get('/@example%2flodash')
+            .reply(200, {
+              name: '@example/lodash',
+              versions: {
+                '0.0.2': {
+                  dependencies: {}
+                }
+              }
+            })
+        var ls = new RemoteLS()
+
+        ls.ls('request', '*', function (res) {
+          res.should.deep.equal({ 'request@0.0.1': { '@example/lodash@0.0.2': {} } })
+          request.done()
+          lodash.done()
+          t.end()
+        })
+      })
+    })
+
     t.end()
   })
 
