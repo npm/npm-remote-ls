@@ -28,10 +28,10 @@
   "homepage": "https://github.com/npm/npm-remote-ls",
   "devDependencies": {
     "chai": "^3.5.0",
-    "nock": "^8.0.0",
+    "nock": "^9.3.3",
     "standard": "^6.0.8",
     "standard-version": "^2.1.2",
-    "tap": "^5.7.1"
+    "tap": "^12.0.1"
   },
   "dependencies": {
     "async": "^2.0.0-rc.3",
@@ -44,5 +44,8 @@
     "semver": "^5.1.0",
     "treeify": "^1.0.1",
     "yargs": "^4.6.0"
+  },
+  "engines": {
+    "node": ">0.12"
   }
 }
