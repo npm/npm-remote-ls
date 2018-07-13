@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "async": "^2.0.0-rc.3",
+    "cacheman": "^2.2.1",
     "char-spinner": "^1.0.1",
     "lodash": "^4.10.0",
     "npm-package-arg": "^4.2.0",
