@@ -68,7 +68,7 @@ if (argv.help || !name) {
   spinner()
   var parsed = npa(name)
   ls(parsed.name, parsed.rawSpec || argv.version, argv.flatten, function (obj) {
-    if (Array.isArray(obj)) console.log(obj)
+    if (Array.isArray(obj)) console.log(JSON.stringify(obj, null, 2))
     else console.log(treeify.asTree(obj))
   })
 }
